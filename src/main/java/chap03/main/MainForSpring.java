@@ -29,6 +29,12 @@ public class MainForSpring {
             } else if (command.startsWith("change ")) {
                 processChangeCommand(command.split(" "));
                 continue;
+            } else if (command.startsWith("list")) {
+                processListCommand();
+                continue;
+            } else if (command.startsWith("info ")) {
+                processInfoCommand(command.split(" "));
+                continue;
             }
             printHelp();
         }
@@ -74,6 +80,20 @@ public class MainForSpring {
         } catch (WrongIdPasswordException e) {
             System.out.println("이메일과 암호가 일치하지 않습니다.\n");
         }
+    }
+
+    private static void processListCommand() {
+        MemberListPrinter memberListPrinter = ctx.getBean("memberListPrinter", MemberListPrinter.class);
+        memberListPrinter.printAll();
+    }
+
+    private static void processInfoCommand(String[] arg) {
+        if (arg.length != 2) {
+            printHelp();
+            return;
+        }
+        MemberInfoPrinter memberInfoPrinter = ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
+        memberInfoPrinter.printMemberInfo(arg[1]);
     }
 
     private static void printHelp() {
