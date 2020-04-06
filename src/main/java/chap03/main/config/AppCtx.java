@@ -3,6 +3,9 @@ package chap03.main.config;
 import chap03.spring.ChangePasswordService;
 import chap03.spring.MemberDao;
 import chap03.spring.MemberRegisterService;
+import chap03.spring.MemberListPrinter;
+import chap03.spring.MemberInfoPrinter;
+import chap03.spring.MemberPrinter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +22,24 @@ public class AppCtx {
     @Bean
     public MemberRegisterService memberRegisterService() {
         return new MemberRegisterService(memberDao());
+    }
+
+    @Bean
+    public MemberListPrinter memberListPrinter() {
+        MemberListPrinter memberListPrinter = new MemberListPrinter(memberDao(), memberPrinter());
+        return memberListPrinter;
+    }
+
+    @Bean MemberInfoPrinter memberInfoPrinter() {
+        MemberInfoPrinter memberInfoPrinter = new MemberInfoPrinter();
+        memberInfoPrinter.setMemberDao(memberDao());
+        memberInfoPrinter.setPrinter(memberPrinter());
+        return memberInfoPrinter;
+    }
+
+    @Bean
+    public MemberPrinter memberPrinter() {
+        return new MemberPrinter();
     }
 
     @Bean
