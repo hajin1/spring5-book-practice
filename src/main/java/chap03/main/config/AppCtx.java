@@ -6,6 +6,7 @@ import chap03.spring.MemberRegisterService;
 import chap03.spring.MemberListPrinter;
 import chap03.spring.MemberInfoPrinter;
 import chap03.spring.MemberPrinter;
+import chap03.spring.VersionPrinter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,4 +49,13 @@ public class AppCtx {
         changePasswordService.setMemberDao(memberDao());
         return changePasswordService;
     }
+
+    @Bean
+    public VersionPrinter versionPrinter() {
+        VersionPrinter versionPrinter = new VersionPrinter();
+        versionPrinter.setMajorVersion(5);
+        versionPrinter.setMinorVersion(0);
+        return versionPrinter;
+    }
+
 }

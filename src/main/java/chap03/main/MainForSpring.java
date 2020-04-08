@@ -35,6 +35,9 @@ public class MainForSpring {
             } else if (command.startsWith("info ")) {
                 processInfoCommand(command.split(" "));
                 continue;
+            } else if (command.startsWith("version")) {
+                processVersionCommand();
+                continue;
             }
             printHelp();
         }
@@ -96,12 +99,20 @@ public class MainForSpring {
         memberInfoPrinter.printMemberInfo(arg[1]);
     }
 
+    private static void processVersionCommand() {
+        VersionPrinter versionPrinter = ctx.getBean("versionPrinter", VersionPrinter.class);
+        versionPrinter.print();
+    }
+
     private static void printHelp() {
         System.out.println();
         System.out.println("잘못된 명령어 입니다. 아래 명령어 사용법을 확인하세요.");
         System.out.println("=== 명령어 사용법 ===");
         System.out.println("new [이메일] [이름] [암호] [암호확인]");
         System.out.println("change [이메일] [현재비밀번호] [변경할비밀번호]");
+        System.out.println("list");
+        System.out.println("info [이메일]");
+        System.out.println("version");
         System.out.println();
     }
 }
