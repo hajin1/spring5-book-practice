@@ -29,15 +29,17 @@ public class AppConf2 {
 
     @Bean MemberInfoPrinter memberInfoPrinter() {
         MemberInfoPrinter memberInfoPrinter = new MemberInfoPrinter();
-        memberInfoPrinter.setMemberDao(memberDao);
-        memberInfoPrinter.setPrinter(memberPrinter);
+        // setter 메서드를 사용해서 의존 주입을 하지 않아도
+        // 스프링 컨테이너가 @Autowired를 붙인 필드에 자동으로 해당 타입의 빈 객체를 주입함
+//        memberInfoPrinter.setMemberDao(memberDao);
+//        memberInfoPrinter.setPrinter(memberPrinter);
         return memberInfoPrinter;
     }
 
     @Bean
     public ChangePasswordService changePasswordService() {
         ChangePasswordService changePasswordService = new ChangePasswordService();
-        changePasswordService.setMemberDao(memberDao);
+//        changePasswordService.setMemberDao(memberDao);
         return changePasswordService;
     }
 
