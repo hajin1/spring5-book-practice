@@ -12,8 +12,10 @@ public class AppConf2 {
     // 스프링의 자동 주입 기능, 해당 타입의 빈을 찾아서 필드에 할당함
     @Autowired
     private MemberDao memberDao;
-    @Autowired
-    private MemberPrinter memberPrinter;
+//    @Autowired
+//    private MemberPrinter memberPrinter;
+
+    private MemberPrinter memberPrinter = new MemberPrinter(); // 빈이 아님
 
     // 이 메서드가 생성한 객체를 스프링 빈으로 설정
     @Bean
