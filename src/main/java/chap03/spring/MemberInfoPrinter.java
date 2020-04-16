@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberInfoPrinter {
 
-	@Autowired
 	private MemberDao memDao;
-	@Autowired
 	private MemberPrinter printer;
 
 	public void printMemberInfo(String email) {
@@ -19,10 +17,13 @@ public class MemberInfoPrinter {
 		System.out.println();
 	}
 
+	// 빈 객체의 메서드에 @Autowired 애노테이션을 붙이면 스프링은 해당 메서드를 호출함
+	@Autowired
 	public void setMemberDao(MemberDao memberDao) {
 		this.memDao = memberDao;
 	}
 
+	@Autowired
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
