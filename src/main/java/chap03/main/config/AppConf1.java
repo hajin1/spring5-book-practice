@@ -1,6 +1,7 @@
 package chap03.main.config;
 
 import chap03.spring.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +16,13 @@ public class AppConf1 {
     }
 
     @Bean
-    public MemberPrinter memberPrinter() {
+    @Qualifier("printer") // 해당 빈의 한정값으로 "printer"를 지정
+    public MemberPrinter memberPrinter1() {
+        return new MemberPrinter();
+    }
+
+    @Bean
+    public MemberPrinter memberPrinter2() {
         return new MemberPrinter();
     }
 
