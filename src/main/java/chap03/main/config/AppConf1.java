@@ -16,13 +16,14 @@ public class AppConf1 {
     }
 
     @Bean
-    @Qualifier("printer") // 해당 빈의 한정값으로 "printer"를 지정
-    public MemberPrinter memberPrinter1() {
+    // printer() 메서드로 정의한 빈의 한정자는 빈 이름인 "printer"가 됨
+    public MemberPrinter printer() {
         return new MemberPrinter();
     }
 
     @Bean
-    public MemberPrinter memberPrinter2() {
+    @Qualifier("mprinter") // 해당 빈의 한정값으로 "mprinter"를 지정
+    public MemberPrinter printer2() {
         return new MemberPrinter();
     }
 
